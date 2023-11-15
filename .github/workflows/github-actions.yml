@@ -1,6 +1,6 @@
 # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-name: Java CI
+name: Java CI - Test action
 on: [push]
 jobs:
   build:
