@@ -1,7 +1,9 @@
 # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-name: Java CI - Test action
+name: Build project
+
 on: [ push ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +15,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'zulu'
-          cache: maven
+          cache: java
       - name: Build
         run: bash .github/workflows/build.sh
       - name: Prepare artifact
