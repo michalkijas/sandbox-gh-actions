@@ -18,7 +18,7 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
-      - run: mkdir staging && cp target/*.jar staging && cp target/classes/release/*.* staging
+      - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v4
         with:
           name: package_${{ github.ref_name }}
