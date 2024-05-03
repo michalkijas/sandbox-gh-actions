@@ -30,4 +30,4 @@ jobs:
         with:
           files: |
             sandbox-gh-actions-0.0.1-SNAPSHOT.jar
-            staging/sandbox-gh-actions-0.0.1-SNAPSHOT.jar
+
