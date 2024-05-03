@@ -21,6 +21,8 @@ jobs:
           cache: maven
       - name: Update version
         run: mvn versions:set -DnewVersion=${{ github.ref_name }}
+        with:
+          cache: maven
       - name: Build
         run: bash .github/workflows/build.sh
       - name: Release
