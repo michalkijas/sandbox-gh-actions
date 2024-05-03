@@ -8,6 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -15,7 +22,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'zulu'
-          cache: maven
       - name: Build
         run: bash .github/workflows/build.sh
       - name: Prepare artifact
