@@ -13,10 +13,12 @@ jobs:
           java-version: '21'
           distribution: 'zulu'
           cache: maven
-      - name: Build with Maven
+      - name: Build
         run: bash .github/workflows/build.sh
-      - run: mkdir staging && cp target/*.jar staging
-      - uses: actions/upload-artifact@v4
+      - name: Prepare artifact
+        run: mkdir staging && cp target/*.jar staging
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: Package
           path: staging
