@@ -1,10 +1,14 @@
 # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
 name: Release
+
 on:
   push:
+    branches:
+      - main
     tags:
-      - '1.*'
+      - '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,16 +21,10 @@ jobs:
           distribution: 'zulu'
           cache: maven
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
-      - run: mkdir staging && cp target/*.jar staging
-      - name: upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: package_${{ github.ref_name }}
-          path: staging
+        run: mvn versions:set -DnewVersion=${{ github.ref_name }} --batch-mode --update-snapshots package
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            target/sandbox-gh-actions-0.0.1-SNAPSHOT.jar
+            target/sandbox-gh-actions-${{ github.ref_name }}.jar
