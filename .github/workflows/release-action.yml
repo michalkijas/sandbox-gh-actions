@@ -29,4 +29,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            staging/package_${{ github.ref_name }}.zip
+            sandbox-gh-actions-0.0.1-SNAPSHOT.jar
+            staging/sandbox-gh-actions-0.0.1-SNAPSHOT.jar
