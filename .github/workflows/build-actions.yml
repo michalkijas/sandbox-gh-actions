@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'zulu'
-          cache: java
+          cache: maven
       - name: Build
         run: bash .github/workflows/build.sh
       - name: Prepare artifact

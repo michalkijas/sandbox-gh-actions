@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'zulu'
-          cache: java
+          cache: maven
       - name: Update version
         run: mvn versions:set -DnewVersion=${{ github.ref_name }}
       - name: Build
