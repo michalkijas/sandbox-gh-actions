@@ -24,12 +24,9 @@ jobs:
         with:
           name: package_${{ github.ref_name }}
           path: staging
-      - name: upload release asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./staging/package_${{ github.ref_name }}
-          asset_name: package_${{ github.ref_name }}
-          asset_content_type: application/zip
+          files: |
+            staging/package_${{ github.ref_name }}.zip
